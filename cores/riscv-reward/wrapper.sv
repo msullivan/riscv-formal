@@ -27,8 +27,8 @@ module rvfi_wrapper (
 
 
    // Actually hook up the CPU
-   cpu cpu(.rst                         (reset),
-           /*AUTOINST*/
+   cpu #(.text_start(0)) cpu(
+           .rst                         (reset),
            // Outputs
            .cpu_ctrs                    (),
            .dump_perf_ctrs              (),
@@ -49,8 +49,9 @@ module rvfi_wrapper (
            .ib__data_1a                 (ib__data_1a[31:0]),
            .db__valid_4a                (db__valid_4a),
            .db__error_4a                (db__error_4a),
-           .db__data_4a                 (db__data_4a[31:0]));
-//		`RVFI_CONN
+           .db__data_4a                 (db__data_4a[31:0]),
+           `RVFI_CONN
+           );
 
 
 endmodule
